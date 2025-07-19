@@ -120,13 +120,6 @@ export const InstaTikCounter = () => {
         {/* Search Form */}
         <Card className="p-6 bg-gradient-card backdrop-blur-sm border-0 shadow-social">
           <div className="space-y-4">
-            {/* Info Note */}
-            <div className="text-center p-4 bg-muted/50 rounded-lg">
-              <p className="text-sm text-muted-foreground">
-                Replace YOUR_APIFY_TOKEN_HERE in ApifyService.ts with your actual Apify API token
-              </p>
-            </div>
-
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {/* Platform Selector */}
               <Select value={platform} onValueChange={handlePlatformChange}>
