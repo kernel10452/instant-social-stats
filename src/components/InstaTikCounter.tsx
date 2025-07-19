@@ -6,14 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { Search, Users, RefreshCw, Instagram, Github } from 'lucide-react';
-
-interface ProfileData {
-  username: string;
-  followers: number;
-  profilePicUrl: string;
-  fullName?: string;
-  verified?: boolean;
-}
+import { ApifyService, type ProfileData } from '@/services/ApifyService';
 
 export const InstaTikCounter = () => {
   const { toast } = useToast();
@@ -26,21 +19,8 @@ export const InstaTikCounter = () => {
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Mock API call (replace with actual Apify integration)
-  const fetchProfileData = async (platform: string, username: string): Promise<ProfileData> => {
-    // Simulate API delay
-    await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
-    
-    // Mock data for demonstration
-    const mockData: ProfileData = {
-      username: username,
-      followers: Math.floor(Math.random() * 10000000) + 100000,
-      profilePicUrl: `https://ui-avatars.com/api/?name=${username}&size=150&background=random`,
-      fullName: username.charAt(0).toUpperCase() + username.slice(1),
-      verified: Math.random() > 0.7
-    };
-    
-    return mockData;
+  const fetchProfileData = async (platform: 'instagram' | 'tiktok', username: string): Promise<ProfileData> => {
+    return ApifyService.fetchProfileData(platform, username);
   };
 
   const handleSearch = async () => {
@@ -140,18 +120,11 @@ export const InstaTikCounter = () => {
         {/* Search Form */}
         <Card className="p-6 bg-gradient-card backdrop-blur-sm border-0 shadow-social">
           <div className="space-y-4">
-            {/* API Key Input (temporary) */}
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-muted-foreground">
-                Apify API Key (temporary - connect to Supabase for production)
-              </label>
-              <Input
-                type="password"
-                placeholder="Enter your Apify API key..."
-                value={apiKey}
-                onChange={(e) => setApiKey(e.target.value)}
-                className="transition-all duration-300 focus:ring-2 focus:ring-primary/20"
-              />
+            {/* Info Note */}
+            <div className="text-center p-4 bg-muted/50 rounded-lg">
+              <p className="text-sm text-muted-foreground">
+                Replace YOUR_APIFY_TOKEN_HERE in ApifyService.ts with your actual Apify API token
+              </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
