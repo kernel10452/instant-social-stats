@@ -26,8 +26,8 @@ export interface ProfileData {
 }
 
 export class ApifyService {
-  // Apify API token - keep secure in JavaScript only
-  private static readonly API_TOKEN = 'apify_api_zyoipth505ZDm89WVX01kzcUQrNwxN0s4NVP';
+  // TODO: Replace with your actual Apify API token
+  private static readonly API_TOKEN = 'YOUR_APIFY_TOKEN_HERE';
   
   // Apify Actor Task IDs - replace with your actual task IDs
   private static readonly ACTORS = {
