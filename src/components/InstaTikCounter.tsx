@@ -225,7 +225,7 @@ export const InstaTikCounter = () => {
             Built for speed and simplicity • Updates every 5 seconds
           </p>
           <p className="text-xs">
-            This is a demo version. Connect to Supabase and add your Apify API key for production use.
+            @khrayzatt on instagram
           </p>
         </div>
       </div>
